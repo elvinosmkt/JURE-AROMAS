@@ -11,7 +11,11 @@
   "dependencies": {
     "react-dom": "^19.2.3",
     "react": "^19.2.3",
-    "react-router-dom": "^7.12.0"
+    "react-router-dom": "^7.12.0",
+    "recharts": "^2.12.0",
+    "lucide-react": "^0.300.0",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
