@@ -107,6 +107,7 @@ const StoreLayout = ({ cart, user, addToCart, updateCart, onComplete, onLogin }:
             <Link to="/products" className="hover:text-primary transition-colors">Loja</Link>
             <Link to="/about" className="hover:text-primary transition-colors">História</Link>
             <Link to="/contact" className="hover:text-primary transition-colors">Suporte</Link>
+            <Link to="/admin/dashboard" className="hover:text-primary transition-colors">Admin</Link>
           </div>
         </div>
         <div className="container mx-auto mt-12 text-center opacity-20 text-[8px] uppercase tracking-[0.5em]">
