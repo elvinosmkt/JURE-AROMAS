@@ -20,7 +20,7 @@ const ProductList = ({ addToCart }: { addToCart?: (p: Product) => void }) => (
                 ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16">
                 {MOCK_PRODUCTS.map(p => (
                     <Link to={`/product/${p.id}`} key={p.id} className="group animate-in fade-in slide-in-from-bottom duration-700">
                         <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-olive/5 mb-8 shadow-sm group-hover:shadow-2xl transition-all duration-500 relative">

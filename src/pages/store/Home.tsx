@@ -64,7 +64,7 @@ const Home = () => {
                         <h2 className="text-5xl font-display italic text-olive">Destaques da Coleção</h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
                         {MOCK_PRODUCTS.slice(0, 3).map(product => (
                             <Link key={product.id} to={`/product/${product.id}`} className="group bg-white rounded-[2rem] p-6 shadow-sm hover:shadow-xl transition-all border border-olive/5">
                                 <div className="aspect-square rounded-2xl overflow-hidden bg-olive/5 mb-6 relative">

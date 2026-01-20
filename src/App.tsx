@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom';
 import { Product, User, Order } from './types/index';
@@ -7,11 +6,13 @@ import { Product, User, Order } from './types/index';
 import AdminLayout from './layouts/AdminLayout';
 import Dashboard from './pages/admin/Dashboard';
 import Orders from './pages/admin/Orders';
+import OrderDetails from './pages/admin/OrderDetails';
 import Products from './pages/admin/Products';
 import Customers from './pages/admin/Customers';
 import Marketing from './pages/admin/Marketing';
 import Settings from './pages/admin/Settings';
 import Reports from './pages/admin/Reports';
+import AdminLogin from './pages/admin/Login';
 
 // Store Imports
 import Header from './components/store/Header';
@@ -35,6 +36,7 @@ const ScrollToTop = () => {
 const App = () => {
   const [cart, setCart] = useState<Product[]>([]);
   const [user, setUser] = useState<User | null>(null);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
 
   const addToCart = (product: Product) => setCart(prev => [...prev, product]);
 
@@ -48,9 +50,16 @@ const App = () => {
     localStorage.setItem('jure_user', JSON.stringify(loggedUser));
   };
 
+  const handleAdminLogin = () => {
+    setIsAdminAuthenticated(true);
+  };
+
   useEffect(() => {
     const saved = localStorage.getItem('jure_user');
     if (saved) setUser(JSON.parse(saved));
+
+    const adminAuth = localStorage.getItem('jure_admin_auth');
+    if (adminAuth === 'true') setIsAdminAuthenticated(true);
   }, []);
 
   // Split App into two layouts based on path
@@ -58,10 +67,14 @@ const App = () => {
     <HashRouter>
       <ScrollToTop />
       <Routes>
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminLayout />}>
+        {/* Admin Login - Outside Layout */}
+        <Route path="/admin/login" element={<AdminLogin onLogin={handleAdminLogin} />} />
+
+        {/* Admin Routes - Protected Layout */}
+        <Route path="/admin" element={<AdminLayout isAuthenticated={isAdminAuthenticated} />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="orders" element={<Orders />} />
+          <Route path="orders/:id" element={<OrderDetails />} />
           <Route path="products" element={<Products />} />
           <Route path="customers" element={<Customers />} />
           <Route path="marketing" element={<Marketing />} />
